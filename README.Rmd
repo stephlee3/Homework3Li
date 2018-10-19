@@ -1,0 +1,72 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# Homework3Li
+
+The goal of Homework3Li is to create a new class for longitudinal datasets, and implement some functions and methods for data analysis.
+
+## Installation
+
+You can install the released version of Homework3Li from [github](https://github.com/stephlee3/Homework3Li) with:
+
+``` r
+require(devtools)
+install_github("https://github.com/stephlee3/Homework3Li")
+```
+
+## Example
+We will implement some functions and methods for longitudinal data anlaysis. The function \code{make_LD} can  convert a data frame into a \code{LongitudinalData} class, and we can get the number of different subjects in the dataset when we \code{print} it.
+
+```{r}
+require(Homework3Li)
+## Read in the data
+library(readr)
+library(dplyr)
+## Load any other packages that you may need to execute your code
+
+file_path <- system.file("extdata","MIE.csv.gz",package="Homework3Li")
+dat <- read_csv(file_path,col_types = "iicdi")
+x <- make_LD(dat)
+print(class(x))
+```
+
+Then the function \code{subject} can filter subject-specific information, and we can get the subject ID or NULL(if the specific subject does not exist) when we \code{print} it.
+```{r}
+out <- subject(x, 10)
+print(out)
+out <- subject(x, 14)
+print(out)
+```
+
+The \code{summary} function is to calculate the mean value over time at different visits and rooms for the specific subject. 
+```{r}
+out <- subject(x, 54) %>% summary
+print(out)
+
+out <- subject(x, 14) %>% summary
+print(out)
+
+```
+
+Similarly, we can get functions \code{visit} and \code{room} to extract specific info from the whole dataset. The \code{print} can show the specific id, visit, or room, and \code{summary} can show the quantiles and mean value of different timepoints for a specific scenario. 
+```{r}
+out <- subject(x, 44) %>% visit(0) %>% room("bedroom")
+print(out)
+
+out <- subject(x, 44) %>% visit(0) %>% room("bedroom") %>% summary
+print(out)
+
+out <- subject(x, 44) %>% visit(1) %>% room("living room") %>% summary
+print(out)
+```
