@@ -3,7 +3,7 @@
 Homework3Li
 ===========
 
-The goal of Homework3Li is to create a new class for longitudinal datasets, and implement some functions and methods for data analysis.
+The goal of this package is to create a new class for longitudinal datasets, and implement some functions and methods for data analysis.
 
 Installation
 ------------
