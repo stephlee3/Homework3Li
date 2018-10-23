@@ -12,13 +12,13 @@ You can install the released version of Homework3Li from [github](https://github
 
 ``` r
 require(devtools)
-install_github("https://github.com/stephlee3/Homework3Li")
+install_github("stephlee3/Homework3Li")
 ```
 
 Example
 -------
 
-We will implement some functions and methods for longitudinal data anlaysis. The function can convert a data frame into a class, and we can get the number of different subjects in the dataset when we it.
+We will implement some functions and methods for longitudinal data anlaysis. The function **make\_LD** can convert a data frame into a **LongitudinalData** class, and we can get the number of different subjects in the dataset when we **print** it.
 
 ``` r
 require(Homework3Li)
@@ -43,7 +43,7 @@ print(class(x))
 #> [1] "LongitudinalData"
 ```
 
-Then the function can filter subject-specific information, and we can get the subject ID or NULL(if the specific subject does not exist) when we it.
+Then the function **subject** can filter subject-specific information, and we can get the subject ID or NULL(if the specific subject does not exist) when we **print** it.
 
 ``` r
 out <- subject(x, 10)
@@ -54,7 +54,7 @@ print(out)
 #> [1] "Subject ID: 14"
 ```
 
-The function is to calculate the mean value over time at different visits and rooms for the specific subject.
+The **summary** function is to calculate the mean value over time at different visits and rooms for the specific subject.
 
 ``` r
 out <- subject(x, 54) %>% summary
@@ -74,7 +74,7 @@ print(out)
 #> 3     2 18.583635           NA    22.55069
 ```
 
-Similarly, we can get functions and to extract specific info from the whole dataset. The can show the specific id, visit, or room, and can show the quantiles and mean value of different timepoints for a specific scenario.
+Similarly, we can get functions **visit** and **room** to extract specific info from the whole dataset. The {print} can show the specific id, visit, or room, and **summary** can show the quantiles and mean value of different timepoints for a specific scenario.
 
 ``` r
 out <- subject(x, 44) %>% visit(0) %>% room("bedroom")

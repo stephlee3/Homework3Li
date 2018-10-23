@@ -22,11 +22,11 @@ You can install the released version of Homework3Li from [github](https://github
 
 ``` r
 require(devtools)
-install_github("https://github.com/stephlee3/Homework3Li")
+install_github("stephlee3/Homework3Li")
 ```
 
 ## Example
-We will implement some functions and methods for longitudinal data anlaysis. The function \code{make_LD} can  convert a data frame into a \code{LongitudinalData} class, and we can get the number of different subjects in the dataset when we \code{print} it.
+We will implement some functions and methods for longitudinal data anlaysis. The function **make_LD** can  convert a data frame into a **LongitudinalData** class, and we can get the number of different subjects in the dataset when we **print** it.
 
 ```{r}
 require(Homework3Li)
@@ -41,7 +41,7 @@ x <- make_LD(dat)
 print(class(x))
 ```
 
-Then the function \code{subject} can filter subject-specific information, and we can get the subject ID or NULL(if the specific subject does not exist) when we \code{print} it.
+Then the function **subject** can filter subject-specific information, and we can get the subject ID or NULL(if the specific subject does not exist) when we **print** it.
 ```{r}
 out <- subject(x, 10)
 print(out)
@@ -49,7 +49,7 @@ out <- subject(x, 14)
 print(out)
 ```
 
-The \code{summary} function is to calculate the mean value over time at different visits and rooms for the specific subject. 
+The **summary** function is to calculate the mean value over time at different visits and rooms for the specific subject. 
 ```{r}
 out <- subject(x, 54) %>% summary
 print(out)
@@ -59,7 +59,7 @@ print(out)
 
 ```
 
-Similarly, we can get functions \code{visit} and \code{room} to extract specific info from the whole dataset. The \code{print} can show the specific id, visit, or room, and \code{summary} can show the quantiles and mean value of different timepoints for a specific scenario. 
+Similarly, we can get functions **visit** and **room** to extract specific info from the whole dataset. The {print} can show the specific id, visit, or room, and **summary** can show the quantiles and mean value of different timepoints for a specific scenario. 
 ```{r}
 out <- subject(x, 44) %>% visit(0) %>% room("bedroom")
 print(out)
